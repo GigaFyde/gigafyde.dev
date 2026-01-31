@@ -1,17 +1,503 @@
 ---
+import Layout from '../layouts/Layout.astro';
 
+const projects = [
+  {
+    name: 'Soundboard',
+    description: 'Twitch streamer soundboard',
+    url: '#',
+    status: 'coming-soon',
+  },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="gigafyde">
+  <div class="sidebar-layout">
+    <!-- Fixed Left Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-content">
+        <!-- Name stacked vertically -->
+        <div class="sidebar-name">
+          <span class="name-text">GigaFyde</span>
+        </div>
+
+        <!-- Navigation as terminal commands -->
+        <nav class="sidebar-nav">
+          <a href="#about" class="nav-cmd">./about</a>
+          <a href="#projects" class="nav-cmd">./projects</a>
+          <a href="#blog" class="nav-cmd">./blog</a>
+          <a href="#links" class="nav-cmd">./links</a>
+        </nav>
+
+        <!-- Socials at bottom -->
+        <div class="sidebar-socials">
+          <a
+            href="https://github.com/gigafyde"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="icon-btn"
+            aria-label="GitHub"
+          >
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
+            </svg>
+          </a>
+          <a
+            href="mailto:hello@gigafyde.dev"
+            class="icon-btn"
+            aria-label="Email"
+          >
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Glow border on right edge -->
+      <div class="sidebar-glow-edge"></div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- About Section -->
+      <section id="about" class="content-section">
+        <!-- whoami command -->
+        <div class="terminal-block opacity-0 animate-fade-in-glow" style="animation-delay: 0.1s;">
+          <div class="terminal-line">
+            <span class="prompt">$</span>
+            <span class="command"> whoami</span>
+          </div>
+          <div class="output">
+            <p class="text-2xl sm:text-3xl font-bold text-[var(--color-cyan)] glow-text-subtle">Laurant Marijnissen</p>
+            <p class="text-[var(--color-text-muted)] mt-1 subtext">@GigaFyde</p>
+          </div>
+        </div>
+
+        <!-- cat about.txt -->
+        <div class="terminal-block opacity-0 animate-fade-in-glow" style="animation-delay: 0.3s;">
+          <div class="terminal-line">
+            <span class="prompt">$</span>
+            <span class="command"> cat about.txt</span>
+          </div>
+          <div class="output output-bordered">
+            <p class="text-lg text-[var(--color-text)]">Developer & tinkerer</p>
+            <p class="text-[var(--color-text-muted)] mt-2">
+              Building tools and experiences on the web. Passionate about clean code,
+              developer experience, and creating things that spark joy.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects" class="content-section">
+        <div class="terminal-block opacity-0 animate-fade-in-glow" style="animation-delay: 0.5s;">
+          <div class="terminal-line">
+            <span class="prompt">$</span>
+            <span class="command"> ls -la projects/</span>
+          </div>
+          <div class="output">
+            <div class="font-mono text-sm">
+              <div class="text-[var(--color-text-muted)] mb-3">total {projects.length}</div>
+              {projects.map((project) => (
+                <a
+                  href={project.url}
+                  class="project-entry block py-3 px-4 -mx-4 rounded hover:bg-[rgba(0,255,255,0.1)] transition-colors"
+                  class:list={{ 'pointer-events-none': project.status === 'coming-soon' }}
+                >
+                  <div class="flex items-center gap-4">
+                    <span class="text-[var(--color-text-muted)]">drwxr-xr-x</span>
+                    <span class="text-[var(--color-cyan)]">{project.name}/</span>
+                    {project.status === 'coming-soon' && (
+                      <span class="text-xs text-[#ffbd2e]">[WIP]</span>
+                    )}
+                  </div>
+                  <div class="text-[var(--color-text-muted)] text-xs mt-1 pl-24">
+                    # {project.description}
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Blog Section -->
+      <section id="blog" class="content-section">
+        <div class="terminal-block opacity-0 animate-fade-in-glow" style="animation-delay: 0.6s;">
+          <div class="terminal-line">
+            <span class="prompt">$</span>
+            <span class="command"> ls blog/</span>
+          </div>
+          <div class="output">
+            <div class="text-[var(--color-text-muted)] text-sm">
+              <span class="text-[#ffbd2e]">[empty]</span> No posts yet. Coming soon...
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Links Section -->
+      <section id="links" class="content-section">
+        <div class="terminal-block opacity-0 animate-fade-in-glow" style="animation-delay: 0.8s;">
+          <div class="terminal-line">
+            <span class="prompt">$</span>
+            <span class="command"> cat links.txt</span>
+          </div>
+          <div class="output">
+            <div class="space-y-3">
+              <a
+                href="https://phazorworks.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="link-entry"
+              >
+                <span class="link-key">business</span>
+                <span class="link-arrow">→</span>
+                <span class="link-value">phazorworks.com</span>
+              </a>
+              <a
+                href="https://github.com/gigafyde"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="link-entry"
+              >
+                <span class="link-key">github</span>
+                <span class="link-arrow">→</span>
+                <span class="link-value">github.com/gigafyde</span>
+              </a>
+              <a
+                href="mailto:hello@gigafyde.dev"
+                class="link-entry"
+              >
+                <span class="link-key">email</span>
+                <span class="link-arrow">→</span>
+                <span class="link-value">hello@gigafyde.dev</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Blinking cursor -->
+        <div class="terminal-block opacity-0 animate-fade-in-glow" style="animation-delay: 1s;">
+          <div class="terminal-line">
+            <span class="prompt">$</span>
+            <span class="cursor"></span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</Layout>
+
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .sidebar-layout {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+  }
+
+  /* Main content scroll snapping */
+  .main-content {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100vh;
+  }
+
+  .content-section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 100vh;
+    background: var(--color-base);
+    z-index: 100;
+    display: flex;
+  }
+
+  .sidebar-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 3rem 1.5rem;
+    flex: 1;
+  }
+
+  /* Glow edge on right side of sidebar */
+  .sidebar-glow-edge {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      var(--color-cyan) 20%,
+      var(--color-cyan) 80%,
+      transparent 100%
+    );
+    box-shadow:
+      0 0 5px rgba(0, 255, 255, 0.5),
+      0 0 10px rgba(0, 255, 255, 0.2);
+  }
+
+  /* Sidebar name */
+  .sidebar-name {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+  }
+
+  .name-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-cyan);
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
+  }
+
+  /* Sidebar navigation as terminal commands */
+  .sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .nav-cmd {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    transition: all 0.3s ease;
+    position: relative;
+    padding-left: 0.75rem;
+  }
+
+  .nav-cmd::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 1px;
+    background: var(--color-cyan);
+    box-shadow: 0 0 3px rgba(0, 255, 255, 0.5);
+    transition: width 0.3s ease;
+  }
+
+  .nav-cmd:hover {
+    color: var(--color-cyan);
+    text-shadow: 0 0 3px rgba(0, 255, 255, 0.4);
+  }
+
+  .nav-cmd:hover::before {
+    width: 0.5rem;
+  }
+
+  /* Sidebar socials */
+  .sidebar-socials {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  /* Main content */
+  .main-content {
+    margin-left: 200px;
+    flex: 1;
+    padding: 4rem 4rem 4rem 6rem;
+    overflow-y: auto;
+  }
+
+  .content-section {
+    min-height: 100vh;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 0;
+    gap: 2rem;
+  }
+
+  .content-section:first-child {
+    padding-top: 0;
+  }
+
+  /* Terminal blocks */
+  .terminal-block {
+    max-width: 700px;
+  }
+
+  .terminal-line {
+    margin-bottom: 0.75rem;
+  }
+
+  .prompt {
+    color: var(--color-cyan);
+    text-shadow: 0 0 3px rgba(0, 255, 255, 0.4);
+  }
+
+  .subtext {
+    color: rgba(0, 255, 255, 0.7);
+    text-shadow:
+      0 0 5px var(--color-cyan),
+      0 0 10px rgba(0, 255, 255, 0.5);
+  }
+
+  .command {
+    color: var(--color-text);
+  }
+
+  .output {
+    padding-left: 1.25rem;
+  }
+
+  .output-bordered {
+    border-left: 2px solid rgba(0, 255, 255, 0.3);
+    padding-left: 1.25rem;
+  }
+
+  /* Project entries */
+  .project-entry:hover {
+    box-shadow: inset 0 0 20px rgba(0, 255, 255, 0.05);
+  }
+
+  /* Link entries */
+  .link-entry {
+    display: block;
+    color: var(--color-text);
+    transition: all 0.3s ease;
+  }
+
+  .link-entry:hover {
+    color: var(--color-cyan);
+  }
+
+  .link-entry:hover .link-value {
+    text-shadow: 0 0 3px rgba(0, 255, 255, 0.4);
+  }
+
+  .link-key {
+    color: var(--color-text-muted);
+    display: inline-block;
+    width: 80px;
+  }
+
+  .link-arrow {
+    color: var(--color-text-muted);
+    margin: 0 0.5rem;
+  }
+
+  .link-value {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* Blinking cursor */
+  .cursor {
+    display: inline-block;
+    width: 0.5rem;
+    height: 1.25rem;
+    background: var(--color-cyan);
+    margin-left: 0.5rem;
+    vertical-align: middle;
+    animation: blink 1s step-end infinite;
+    box-shadow: 0 0 3px rgba(0, 255, 255, 0.4);
+  }
+
+  @keyframes blink {
+    0%, 50% {
+      opacity: 1;
+    }
+    51%, 100% {
+      opacity: 0;
+    }
+  }
+
+  /* Mobile responsive */
+  @media (max-width: 768px) {
+    .sidebar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      top: auto;
+      width: 100%;
+      height: auto;
+      padding: 0;
+    }
+
+    .sidebar-content {
+      flex-direction: row;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      gap: 1.5rem;
+    }
+
+    .sidebar-name {
+      writing-mode: horizontal-tb;
+      transform: none;
+    }
+
+    .name-text {
+      font-size: 1rem;
+    }
+
+    .sidebar-nav {
+      flex-direction: row;
+      gap: 1rem;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .nav-cmd {
+      font-size: 0.75rem;
+      padding-left: 0;
+    }
+
+    .nav-cmd::before {
+      display: none;
+    }
+
+    .sidebar-socials {
+      flex-direction: row;
+      gap: 1rem;
+    }
+
+    .sidebar-glow-edge {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(
+        to right,
+        transparent 0%,
+        var(--color-cyan) 20%,
+        var(--color-cyan) 80%,
+        transparent 100%
+      );
+    }
+
+    .main-content {
+      margin-left: 0;
+      margin-bottom: 80px;
+      padding: 2rem 1.5rem;
+    }
+
+    .content-section {
+      min-height: auto;
+      padding: 3rem 0;
+    }
+  }
+</style>
